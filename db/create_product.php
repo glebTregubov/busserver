@@ -7,21 +7,36 @@
  */
 $response = array();
 
-if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['description'])) {
+if (isset($_POST['idRecord']) && isset($_POST['idStation']) && isset($_POST['nameStation']) && isset($_POST['timeStart']) && isset($_POST['timeStop']) && isset($_POST['longitude']) && isset($_POST['latitude'])) {
+/**
+    $idRecord = $_POST['idRecord'];
+    $idStation = $_POST['idStation'];
+    $nameStation= $_POST['nameStation'];
+    $timeStart = $_POST['timeStart'];
+    $timeStop = $_POST['timeStop'];
+    $longitude = $_POST['longitude'];
+    $latitude = $_POST['latitude'];
+    $sendToServer = $_POST['sendToServer'];
 
-    $name = $_POST['name'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
-
+    /**/
+    $idRecord = urldecode($_POST['idRecord']);
+    $idStation = urldecode($_POST['idStation']);
+    $nameStation= urldecode( $_POST['nameStation']);
+    $timeStart = urldecode($_POST['timeStart']);
+    $timeStop = urldecode($_POST['timeStop']);
+    $longitude = urldecode($_POST['longitude']);
+    $latitude = urldecode($_POST['latitude']);
+    $sendToServer = urldecode($_POST['sendToServer']);
+//*/
     require 'db_connect.php';
 
     $db = new DB_CONNECT();
 
-    $result = mysql_query("INSERT INTO products(name, price, description) VALUES('$name', '$price', '$description')");
+    $result = mysql_query("INSERT INTO products(idRecord, idStation, nameStation, timeStart, timeStop, longitude, latitude, sendToServer ) VALUES('$idRecord', '$idStation', '$nameStation', '$timeStart', '$timeStop', '$longitude', '$latitude','$sendToServer')");
 
     if ($result) {
         $response["success"] = 1;
-        $response["message"] = "Product successfully created.";
+        $response["message"] = "Record successfully created.";
 
         echo json_encode($response);
     } else {

@@ -24,11 +24,14 @@ if (isset($_GET["pid"])) {
 
             $product = array();
             $product["pid"] = $result["pid"];
-            $product["name"] = $result["name"];
-            $product["price"] = $result["price"];
-            $product["description"] = $result["description"];
-            $product["created_at"] = $result["created_at"];
-            $product["updated_at"] = $result["updated_at"];
+            $product["idRecord"] = $result["idRecord"];
+            $product["idStation"] = $result["idStation"];
+            $product["nameStation"] = $result["nameStation"];
+            $product["timeStart"] = $result["timeStart"];
+            $product["timeStop"] = $result["timeStop"];
+            $product["longitude"] = $result["longitude"];
+            $product["latitude"] = $result["latitude"];
+            $product["sendToServer"] = $result["sendToServer"];
             $response["success"] = 1;
 
             $response["product"] = array();
@@ -38,13 +41,13 @@ if (isset($_GET["pid"])) {
             echo json_encode($response);
         } else {
             $response["success"] = 0;
-            $response["message"] = "No product found";
+            $response["message"] = "No record found";
 
             echo json_encode($response);
         }
     } else {
         $response["success"] = 0;
-        $response["message"] = "No product found";
+        $response["message"] = "No record found";
 
         echo json_encode($response);
     }

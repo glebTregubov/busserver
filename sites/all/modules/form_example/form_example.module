@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * View my table
+ */
+
+
+function form_example_permission()
+{
+    return array(
+        'submit form_example' => array(
+            'title' => t('Submit form_example'),
+            'description' => t('Submit the form_example form'),
+        ),
+        'access form_example submissions' => array(
+            'title' => t('Access form_example submissions'),
+            'description' => t('Access the form_example submissions'),
+        ),
+    );
+
+}
+
+function form_example_menu()
+{
+    $items = array();
+    /**   $items['form-example'] = array(
+     * 'title' => 'My Example Form',
+     * 'type' => MENU_NORMAL_ITEM,
+     * 'access arguments' => array('submit form_example'),
+     * 'page callback' => 'drupal_get_form',
+     * 'page arguments' => array('form_example_form'),
+     * ); */
+    $items['form-submissions'] = array(
+        'title' => 'My Form Submissions',
+        'type' => MENU_NORMAL_ITEM,
+        'access arguments' => array('access form_example submissions'),
+        'page callback' => 'form_example_submissions',
+
+    );
+
+    return $items;
+}
+
+function form_example_submissions()
+{
+
+//    $results = db_query("SELECT * FROM {products}");
+
+    $query = db_select('products', 'fe');
+    $query
+        ->fields('fe', array('pid', 'idRecord', 'idStation', 'nameStation', 'timeStart', 'timeStop', 'longitude', 'latitude', 'created_at'))
+        ->range(0, 50)
+        ->orderBy('fe.pid', 'DESC');
+
+    $results = $query->execute();
+
+
+    $header = array(t('pid'), t('idRecord'), t('idStation'), t('nameStation'), t('timeStart'), t('timeStop'), t('longitude'), t('latitude'), t('created_at'));
+    $rows = array();
+
+    foreach ($results AS $result) {
+        $rows[] = array(
+            $result->pid,
+            $result->idRecord,
+            $result->idStation,
+            $result->nameStation,
+            $result->timeStart,
+            $result->timeStop,
+            $result->longitude,
+            $result->latitude,
+            $result->created_at,
+
+        );
+    }
+
+    return theme('table', array('header' => $header, 'rows' => $rows));
+}

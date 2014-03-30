@@ -1,0 +1,10 @@
+name = "MyDatabase Views"
+description = "Exposes ModBase Tables to Views."
+dependencies[] = views
+package = "MyDatabase Views"
+core = 7.x
+version = "7.x-1.0-dev"
+project = "mydatabase_views"
+
+files[] = mydatabase_views.module
+files[] = mydatabase_views.views.inc
