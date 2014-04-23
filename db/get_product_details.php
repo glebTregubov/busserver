@@ -15,7 +15,7 @@ $db = new DB_CONNECT();
 if (isset($_GET["pid"])) {
     $pid = $_GET['pid'];
 
-    $result = mysql_query("SELECT *FROM products WHERE pid = $pid");
+    $result = mysql_query("SELECT *FROM records WHERE pid = $pid");
 
     if (!empty($result)) {
         if (mysql_num_rows($result) > 0) {

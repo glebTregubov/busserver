@@ -10,6 +10,7 @@ $response = array();
 if (isset($_POST['pid']) && isset($_POST['idRecord']) && isset($_POST['idStation']) && isset($_POST['nameStation']) && isset($_POST['timeStart']) && isset($_POST['timeStop']) && isset($_POST['longitude']) && isset($_POST['latitude']))  {
 
     $pid = $_POST['pid'];
+    $idUser = $_POST['idUser'];
     $idRecord = $_POST['idRecord'];
     $idStation = $_POST['idStation'];
     $nameStation= $_POST['nameStation'];
@@ -23,7 +24,7 @@ if (isset($_POST['pid']) && isset($_POST['idRecord']) && isset($_POST['idStation
 
     $db = new DB_CONNECT();
 
-    $result = mysql_query("UPDATE products SET idRecord = '$idRecord', idStation = '$idStation', nameStation = '$nameStation', timeStart = '$timeStart', timeStop = '$timeStop', longitude = '$longitude', latitude = '$latitude', sendToServer ='$sendToServer' WHERE pid = $pid");
+    $result = mysql_query("UPDATE records SET idUser = '$idUser', idRecord = '$idRecord', idStation = '$idStation', nameStation = '$nameStation', timeStart = '$timeStart', timeStop = '$timeStop', longitude = '$longitude', latitude = '$latitude', sendToServer ='$sendToServer' WHERE pid = $pid");
 
     if ($result) {
         // successfully updated

@@ -14,7 +14,7 @@ if (isset($_POST['pid'])) {
 
     $db = new DB_CONNECT();
 
-    $result = mysql_query("DELETE FROM products WHERE pid = $pid");
+    $result = mysql_query("DELETE FROM records WHERE pid = $pid");
     if (mysql_affected_rows() > 0) {
         $response["success"] = 1;
         $response["message"] = "Record successfully deleted";

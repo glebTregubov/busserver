@@ -15,7 +15,25 @@ function  mydatabase_views_views_data() {
         'weight' => -10,
     );
 
-    $data['records']['idRecord'] = array(
+ $data['records']['idUser'] = array(
+        'title' => t('idUser Input Value'),
+        'help' => t('idUser Input Value'),
+        'field' => array(
+            'handler' => 'views_handler_field',
+            ' click sortable' => TRUE,
+        ),
+        'sort' => array(
+            'handler' => 'views_handler_sort',
+        ),
+        'filter' => array(
+            'handler' => 'views_handler_filter_string',
+        ),
+        'argument' => array(
+            'handler' => 'views_handler_argument_string',
+        ),
+    );   
+
+ $data['records']['idRecord'] = array(
         'title' => t('idRecord Input Value'),
         'help' => t('idRecord Input Value'),
         'field' => array(

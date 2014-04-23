@@ -21,26 +21,19 @@ $db = new DB_CONNECT();
 //}
 
 
-$result = mysql_query("SELECT *FROM records") or die(mysql_error());
+$result = mysql_query("SELECT * FROM users") or die(mysql_error());
 
 if (mysql_num_rows($result) > 0) {
-    $response["products"] = array();
+    $response["users"] = array();
 
     while ($row = mysql_fetch_array($result)) {
-        $product = array();
-        $product["pid"] = $row["pid"];
-        $product["idRecord"] = $row["idRecord"];
-        $product["idStation"] = $row["idStation"];
-        $product["nameStation"] = $row["nameStation"];
-        $product["timeStart"] = $row["timeStart"];
-        $product["timeStop"] = $row["timeStop"];
-        $product["latitude"] = $row["latitude"];
-        $product["longitude"] = $row["longitude"];
-        $product["created_at"] = $row["created_at"];
-        $product["updated_at"] = $row["updated_at"];
-        $product["sendToServer"] = $row["sendToServer"];
+        $users = array();
+        $users["pid"] = $row["pid"];
+        $users["userName"] = $row["userName"];
+        $users["userLogin"] = $row["userLogin"];
+        $users["userPass"] = $row["userPass"];
 
-        array_push($response["products"], $product);
+        array_push($response["users"], $users);
     }
     $response["success"] = 1;
 
